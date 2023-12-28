@@ -5,8 +5,7 @@ on:
       - main
   pull_request:
     branches:
-      - main
-
+      - main      
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,7 +14,7 @@ jobs:
     services:
       postgres:
         image: postgres:alpine
-        ports:
+        ports:  
           - 5432:5432
         env:
           POSTGRES_PASSWORD: postgres
@@ -25,10 +24,9 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        users: actions/checkout@v2
 
       - name: Install dependencies
         run: |
@@ -42,5 +40,5 @@ jobs:
 
       - name: Run unit tests with nose
         run: nosetests
-        env:
+        env: 
           DATABASE_URI: "postgresql://postgres:postgres@postgres:5432/testdb"
